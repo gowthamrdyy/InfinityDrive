@@ -25,7 +25,7 @@ interface FileRowProps {
   index: number;
 }
 
-const iconMap: Record<string, React.ComponentType<{ size?: number; className?: string }>> = {
+const iconMap: Record<string, React.ComponentType<{ size?: number; className?: string; strokeWidth?: number }>> = {
   Folder, FileText, Image, Video, Music,
   Sheet, Presentation, Archive, FileCode, File,
 };

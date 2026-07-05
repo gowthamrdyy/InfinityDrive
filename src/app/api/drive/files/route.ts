@@ -46,7 +46,7 @@ export async function GET(request: NextRequest) {
       // Add primary fetch promise
       fetchPromises.push(
         listFiles(primaryDrive, folderId).then(res => 
-          res.map(f => ({ ...f, ownerEmail: session.user.email }))
+          res.map(f => ({ ...f, ownerEmail: session.user?.email }))
         ).catch(e => {
           console.error('[API] Failed to fetch primary files for combine:', e);
           return [];
@@ -54,7 +54,7 @@ export async function GET(request: NextRequest) {
       );
 
       // Fetch all linked accounts
-      const linkedSnap = await db.collection('users').doc(session.user.email!).collection('linkedAccounts').get();
+      const linkedSnap = await db.collection('users').doc(session.user?.email as string).collection('linkedAccounts').get();
       
       linkedSnap.forEach((doc) => {
         const linkedData = doc.data();
@@ -99,7 +99,7 @@ export async function GET(request: NextRequest) {
 
     } else if (linkedAccountId) {
       // Fetch files from ONE linked account
-      const linkedRef = db.collection('users').doc(session.user.email!).collection('linkedAccounts').doc(linkedAccountId);
+      const linkedRef = db.collection('users').doc(session.user?.email as string).collection('linkedAccounts').doc(linkedAccountId);
       const linkedSnap = await linkedRef.get();
       
       if (!linkedSnap.exists) {
@@ -126,7 +126,7 @@ export async function GET(request: NextRequest) {
         drive = createDriveClient(accessToken);
       }
       files = await listFiles(drive, folderId);
-      files = files.map(f => ({ ...f, ownerEmail: session.user.email }));
+      files = files.map(f => ({ ...f, ownerEmail: session.user?.email as string }));
     }
 
     return NextResponse.json({ files });

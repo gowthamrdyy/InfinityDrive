@@ -15,7 +15,7 @@ interface ProfileViewProps {
 export function ProfileView({ onViewFiles }: ProfileViewProps = {}) {
   const { data: session } = useSession();
   const { quota, percentage, isWarning, isCritical, isLoading: quotaLoading } = useQuota();
-  const { accounts, isLoading: accountsLoading, linkNewAccount, refreshAccounts } = useLinkedAccounts();
+  const { accounts, isLoading: accountsLoading, linkNewAccount, refresh: refreshAccounts } = useLinkedAccounts();
 
   const handleRemove = async (email: string) => {
     if (!confirm('Are you sure you want to remove this linked account?')) return;
