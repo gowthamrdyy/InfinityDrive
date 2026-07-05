@@ -4,7 +4,7 @@
 
 import { initializeApp, getApps, cert } from 'firebase-admin/app';
 import { getFirestore } from 'firebase-admin/firestore';
-import { getAuth } from 'firebase-admin/auth';
+
 
 if (!getApps().length) {
   if (process.env.FIREBASE_PROJECT_ID) {
@@ -32,5 +32,5 @@ if (!getApps().length) {
 // Export safe instances that won't crash at build time
 // Pass the named database 'infinitydrive' since the (default) database was not created
 export const db = getApps().length ? getFirestore(getApps()[0], 'infinitydrive') : ({} as FirebaseFirestore.Firestore);
-export const auth = getApps().length ? getAuth() : ({} as any);
+
 
