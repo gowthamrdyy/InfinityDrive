@@ -35,7 +35,7 @@ export async function GET(request: NextRequest) {
 
     const { searchParams } = new URL(request.url);
     const code = searchParams.get('code');
-    const redirectUri = `${process.env.NEXTAUTH_URL}/api/accounts/link`;
+    const redirectUri = `${request.nextUrl.origin}/api/accounts/link`;
 
     if (!code) {
       // Step 1: Generate OAuth URL for linking
