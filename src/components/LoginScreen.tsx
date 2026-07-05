@@ -120,17 +120,23 @@ export function LoginScreen() {
             <ArrowRight size={16} className="opacity-40" />
           </motion.button>
 
-          {/* Footer Note */}
-          <motion.p
+          <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.6, duration: 0.4 }}
-            className="text-[11px] text-text-tertiary mt-4 leading-relaxed"
+            className="mt-6 flex flex-col items-center gap-2"
           >
-            Sign in with your primary Google account.
-            <br />
-            You&apos;ll link secondary accounts next.
-          </motion.p>
+            <p className="text-[11px] text-text-tertiary leading-relaxed">
+              Sign in with your primary Google account.
+              <br />
+              You&apos;ll link secondary accounts next.
+            </p>
+            <div className="flex items-center gap-4 text-[11px] text-text-tertiary/70 mt-2">
+              <a href="/privacy" className="hover:text-accent transition-colors">Privacy Policy</a>
+              <span>&bull;</span>
+              <a href="/terms" className="hover:text-accent transition-colors">Terms of Service</a>
+            </div>
+          </motion.div>
         </div>
       </motion.div>
     </div>
