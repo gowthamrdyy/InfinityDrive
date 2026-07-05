@@ -1,36 +1,73 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ♾️ InfinityDrive
 
-## Getting Started
+InfinityDrive is a revolutionary, unlimited storage solution built on top of Google Drive. By seamlessly linking multiple Google accounts together under one unified dashboard, InfinityDrive allows you to aggregate your cloud storage without paying for premium subscriptions. 
 
-First, run the development server:
+Stop managing multiple accounts. Start experiencing infinite storage.
+
+## ✨ Features
+
+- **Unified Dashboard**: View, manage, and search all your files across your primary and linked Google accounts in one beautiful, single-pane-of-glass interface.
+- **Cross-Account Merging**: The "All Files" view concurrently fetches and aggregates files across all your connected accounts, perfectly sorted and badged.
+- **Seamless Transfers**: Move files between your Google accounts instantly with a single click. Offload large files from your primary account to a secondary account to free up space.
+- **Smart Quota Management**: Real-time visualization of your storage limits and usage across all linked accounts.
+- **Premium UI**: Built with a sleek, modern aesthetic using Tailwind CSS and Framer Motion. Features include a breathtaking scroll-tilted grid landing page, interactive 3D folder galleries, and glassmorphic design elements.
+
+## 🚀 Tech Stack
+
+- **Framework**: Next.js 16 (App Router)
+- **Styling**: Tailwind CSS v4 & Framer Motion
+- **Authentication**: NextAuth.js (v5 Beta)
+- **Database**: Firebase / Firestore
+- **API Integration**: Google Drive API (`googleapis`)
+- **State Management**: SWR (Stale-While-Revalidate)
+
+## 🛠️ Getting Started
+
+### Prerequisites
+
+1. A Firebase project with Firestore enabled.
+2. A Google Cloud project with the **Google Drive API** enabled and OAuth credentials configured.
+
+### Environment Setup
+
+Create a `.env.local` file in the root directory:
 
 ```bash
+# NextAuth
+NEXTAUTH_URL="http://localhost:3000"
+NEXTAUTH_SECRET="your-nextauth-secret"
+
+# Google OAuth
+GOOGLE_CLIENT_ID="your-google-client-id"
+GOOGLE_CLIENT_SECRET="your-google-client-secret"
+
+# Firebase Admin
+FIREBASE_PROJECT_ID="your-firebase-project-id"
+FIREBASE_CLIENT_EMAIL="your-firebase-client-email"
+FIREBASE_PRIVATE_KEY="your-firebase-private-key"
+
+# Encryption (32-byte hex string)
+ENCRYPTION_KEY="your-32-byte-encryption-key"
+```
+
+### Installation
+
+```bash
+# Install dependencies
+npm install
+
+# Run the development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🔐 Security
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Client-Side Safety**: Access tokens and refresh tokens are managed entirely server-side.
+- **Encrypted Storage**: Secondary account refresh tokens are strictly encrypted using AES-256-GCM before being stored in Firestore.
+- **Token Auto-Refresh**: Tokens are automatically refreshed in the background upon expiration, ensuring uninterrupted access without manual re-authentication.
 
-## Learn More
+## 📄 License
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This project is licensed under the MIT License - see the LICENSE file for details.
