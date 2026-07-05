@@ -1,6 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // Fix Firebase Admin ESM/CommonJS bundling issues on Vercel
+  serverExternalPackages: ['firebase-admin'],
   // Allow Google profile images
   images: {
     remotePatterns: [
